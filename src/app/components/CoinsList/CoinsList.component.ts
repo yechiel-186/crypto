@@ -1,6 +1,6 @@
 
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { CoinsModel } from 'src/app/CoinsModel';
+
 import { CoinsApiService } from 'src/app/servies/coins-api.service';
 
 
@@ -11,10 +11,10 @@ import { CoinsApiService } from 'src/app/servies/coins-api.service';
   templateUrl: './CoinsList.component.html',
   styleUrls: ['./CoinsList.component.css']
 })
-export class CoinsListComponent implements OnInit,OnChanges {
+export class CoinsListComponent implements OnInit {
  @Input() search:string;
-  coinses:CoinsModel[];
-  showme:boolean=false;
+  coinses:any[];
+  
   constructor(private coins:CoinsApiService) {  
    
     }
@@ -36,9 +36,5 @@ export class CoinsListComponent implements OnInit,OnChanges {
          ab=> {console.log(ab) ;this.coinses=ab} )
         
       } 
-      onuserclick():void{
-        this.showme=true;
-        this.coins.httpGet().subscribe(
-           ab=> {console.log(ab) ;this.coinses=ab} )
-        } 
+     
 }

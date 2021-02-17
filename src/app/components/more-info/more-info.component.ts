@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CoinsModel } from 'src/app/CoinsModel';
+
 import { CoinsApiService } from 'src/app/servies/coins-api.service';
 
 
@@ -9,8 +9,8 @@ import { CoinsApiService } from 'src/app/servies/coins-api.service';
   styleUrls: ['./more-info.component.css']
 })
 export class MoreInfoComponent implements OnInit {
-  
-  coinses:CoinsModel[];
+  showme:boolean=false;
+  coinses:any[];
   constructor(private coins:CoinsApiService) { 
     
  
@@ -19,5 +19,16 @@ export class MoreInfoComponent implements OnInit {
   ngOnInit(): void {
  
 }
-  
+clicked(){
+  if(this.showme==false){
+this.showme=true}
+else if(this.showme==true){
+  this.showme=false
+}
+} 
+getall():void{
+  this.coins.httpGet().subscribe(
+     ab=> {console.log(ab) ;this.coinses=ab} )
+    
+  } 
 }
